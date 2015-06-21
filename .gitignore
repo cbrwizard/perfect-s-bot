@@ -3,5 +3,5 @@
 .idea
 .svn
 .git
-settings.txt
+settings.yml
 *.pid
