@@ -1,2 +1,0 @@
-API_TOKEN = your_token_here
-ROOM = your_room_name_here

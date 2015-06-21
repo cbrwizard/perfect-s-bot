@@ -15,8 +15,18 @@ class PerfectSBot < Hipbot::Bot
       brains.init(response: response, bot: self)
     end
 
-    def get_users
-      Hipbot::User.all.select { |user| user.mention != bot_mention }.map(&:mention)
+    def users_mentions
+      online_users.map { |user| user.attributes[:mention] } if online_users
+    end
+
+    def online_users
+      Hipbot::User
+        .all
+        .select { |user| user.attributes[:mention] != bot_mention && user.attributes[:is_online] }
+    end
+
+    def anybody_online?
+      online_users.length > 0
     end
   end
 

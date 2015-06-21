@@ -1,0 +1,4 @@
+room: YOUR_ROOM
+jid: BOT_ID@chat.hipchat.com
+password: PASSWORD
+status: BOT STATUS MESSAGE

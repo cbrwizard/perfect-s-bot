@@ -16,10 +16,12 @@ class SportyBrains
       counter = 0
 
       while counter < NUMBER_OF_REPEATS do
-        announce_exercise
-        time_until_next_lottery = rand(13..15) # 300..1800
-        announce_next_exercise(time_until_next_lottery)
-        counter +=1
+        if bot.anybody_online?
+          announce_exercise
+          time_until_next_lottery = rand(300..1800)
+          announce_next_exercise(time_until_next_lottery)
+          counter +=1
+        end
         sleep(time_until_next_lottery)
       end
     end
@@ -35,8 +37,7 @@ class SportyBrains
     def announce_next_exercise(time_until_next_lottery)
       reset_current_exercise
 
-      # next_lottery_string = "NEXT LOTTERY FOR #{current_exercise[:name]} IS IN #{time_until_next_lottery/60} MINUTES"
-      next_lottery_string = "NEXT LOTTERY FOR #{current_exercise[:announcement]} IS IN #{time_until_next_lottery} SECONDS"
+      next_lottery_string = "NEXT LOTTERY FOR #{current_exercise[:name]} IS IN #{time_until_next_lottery/60} MINUTES"
 
       response.reply next_lottery_string
     end
@@ -55,7 +56,7 @@ class SportyBrains
     end
 
     def all_users
-      bot.all_users
+      bot.users_mentions
     end
 
     def choose_user
